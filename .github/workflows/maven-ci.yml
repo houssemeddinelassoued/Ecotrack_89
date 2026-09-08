@@ -1,0 +1,29 @@
+name: Maven CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - develop # Trigger the workflow on push to the 'develop' branch
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # Use a standard Linux runner for build tasks
+    steps:
+    - uses: actions/checkout@v4 # Checkout the repository code
+      with:
+        # Optional: Fetch all history to allow comparing against multiple commits
+        fetch-depth: 0
+
+    - name: Set up JDK 21 # Use a suitable JDK version for the project
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21' # Adjust this version if necessary for the project
+        distribution: 'temurin'
+        cache: 'maven' # Cache dependencies for faster runs
+
+    - name: Build with Maven
+      run: mvn clean verify # Executes clean, compile, test, and package phases
+
+    - name: Optional: Run Security Scan (Placeholder)
+      # Add steps for security scanning tools here (e.g., dependency-check)
+      run: echo "Security scan placeholder executed."
