@@ -1,0 +1,21 @@
+# Build artefacts Maven : regeneres localement et sans interet pour le contexte.
+target/
+bin/
+
+# Rapports et journaux generes par les executions de tests.
+reports/
+*.log
+*.dump
+*.dumpstream
+
+# Fichiers d'environnement contenant potentiellement des secrets locaux.
+.env
+.env.*
+!.env.example
+
+# Metadonnees et fichiers temporaires de l'IDE / systeme.
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db

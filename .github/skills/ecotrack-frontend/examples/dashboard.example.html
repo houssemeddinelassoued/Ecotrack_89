@@ -1,0 +1,67 @@
+<main class="dashboard" aria-labelledby="dashboard-title">
+    <header class="dashboard__header">
+        <div>
+            <p class="dashboard__context">Entreprise / Periode selectionnee</p>
+            <h1 id="dashboard-title">Vue d'ensemble</h1>
+        </div>
+        <form class="dashboard__filters" aria-label="Filtrer la periode">
+            <label for="period-from">Du</label>
+            <input id="period-from" name="from" type="date">
+            <label for="period-to">Au</label>
+            <input id="period-to" name="to" type="date">
+            <button type="submit">Appliquer</button>
+        </form>
+    </header>
+
+    <section class="metrics" aria-label="Indicateurs de la periode">
+        <article class="metric">
+            <h2>Energie consommee</h2>
+            <p class="metric__value">4 218,7500 <span>kWh</span></p>
+            <p class="metric__trend">En baisse de 6,2 %</p>
+        </article>
+        <article class="metric">
+            <h2>Empreinte carbone</h2>
+            <p class="metric__value">236,2500 <span>kgCO2e</span></p>
+            <p class="metric__trend">En baisse de 4,8 %</p>
+        </article>
+        <article class="metric">
+            <h2>Actifs actifs</h2>
+            <p class="metric__value">184</p>
+            <p class="metric__trend">7 sans affectation</p>
+        </article>
+    </section>
+
+    <section class="data-section" aria-labelledby="consumers-title">
+        <div class="data-section__heading">
+            <div>
+                <h2 id="consumers-title">Actifs les plus consommateurs</h2>
+                <p>Consommation cumulee sur la periode selectionnee</p>
+            </div>
+            <a href="/assets?sort=energy,desc">Voir tous les actifs</a>
+        </div>
+        <div class="table-scroll" tabindex="0" aria-label="Tableau defilable horizontalement">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Actif</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Statut</th>
+                        <th scope="col">Employe</th>
+                        <th scope="col">Energie</th>
+                        <th scope="col">Carbone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><a href="/assets/42">SRV-PAR-042</a></th>
+                        <td>Serveur</td>
+                        <td><span class="status status--active">Actif</span></td>
+                        <td>Infrastructure</td>
+                        <td>812,5000 kWh</td>
+                        <td>45,5000 kgCO2e</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>

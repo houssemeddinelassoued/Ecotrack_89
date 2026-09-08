@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoTrack — Modèle de données MVP</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gherkin.min.js"></script>
+<style>
+    :root {
+        --forest-900: #0b2b1f;
+        --forest-800: #12402c;
+        --forest-700: #1b4332;
+        --forest-600: #2d6a4f;
+        --forest-500: #40916c;
+        --leaf-400: #52b788;
+        --leaf-300: #74c69d;
+        --leaf-200: #95d5b2;
+        --leaf-100: #d8f3dc;
+        --paper: #f4faf6;
+        --ink: #0f1f18;
+        --muted: #4a6357;
+        --card-shadow: 0 10px 30px rgba(11, 43, 31, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+        color: var(--ink);
+        background: linear-gradient(180deg, var(--paper) 0%, #eaf6ee 100%);
+        line-height: 1.6;
+    }
+
+    header.hero {
+        width: 100%;
+        background: linear-gradient(90deg, var(--forest-900) 0%, var(--forest-700) 55%, var(--forest-600) 100%);
+        color: var(--leaf-100);
+        padding: 0.9rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        box-shadow: var(--card-shadow);
+    }
+
+    .hero-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .brand-block {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+    }
+
+    .brand .leaf {
+        font-size: 1.2rem;
+    }
+
+    .tagline {
+        color: var(--leaf-200);
+        font-size: 0.85rem;
+        max-width: 48ch;
+        border-left: 1px solid rgba(255, 255, 255, 0.25);
+        padding-left: 1rem;
+    }
+
+    nav.toc {
+        margin-top: 0;
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    nav.toc a {
+        color: var(--leaf-100);
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 0.45rem 0.9rem;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    nav.toc a:hover {
+        background: var(--leaf-400);
+        color: var(--forest-900);
+        transform: translateY(-1px);
+    }
+
+    main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2.5rem 2rem 4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    section.card {
+        background: #ffffff;
+        border: 1px solid var(--leaf-100);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: var(--card-shadow);
+        scroll-margin-top: 400px;
+    }
+
+    section.card h2 {
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        color: var(--forest-700);
+        font-size: 1.5rem;
+        border-bottom: 2px solid var(--leaf-100);
+        padding-bottom: 0.6rem;
+    }
+
+    .badge {
+        display: inline-block;
+        background: var(--leaf-100);
+        color: var(--forest-700);
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.2rem 0.6rem;
+        border-radius: 6px;
+        margin-left: 0.4rem;
+        vertical-align: middle;
+    }
+
+    .context-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.2rem;
+        margin-top: 1.2rem;
+    }
+
+    .context-grid .item {
+        background: var(--paper);
+        border: 1px solid var(--leaf-100);
+        border-radius: 12px;
+        padding: 1rem 1.1rem;
+    }
+
+    .context-grid .item h3 {
+        margin: 0 0 0.4rem;
+        font-size: 1rem;
+        color: var(--forest-600);
+    }
+
+    .context-grid .item p {
+        margin: 0;
+        font-size: 0.92rem;
+        color: var(--muted);
+    }
+
+    .scope-list {
+        margin-top: 1.4rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 0.8rem;
+    }
+
+    .scope-list li {
+        list-style: none;
+        background: var(--forest-700);
+        color: var(--leaf-100);
+        padding: 0.7rem 1rem;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .scope-list { padding-left: 0; }
+
+    .story-box {
+        margin-top: 1.2rem;
+        background: var(--paper);
+        border-left: 4px solid var(--leaf-400);
+        border-radius: 8px;
+        padding: 1.1rem 1.3rem;
+    }
+
+    .story-box p {
+        margin: 0.3rem 0;
+        color: var(--ink);
+    }
+
+    .rule-box {
+        margin-top: 1rem;
+        background: var(--forest-700);
+        color: var(--leaf-100);
+        border-radius: 10px;
+        padding: 0.9rem 1.1rem;
+        font-size: 0.92rem;
+    }
+
+    .rule-box code {
+        background: rgba(255, 255, 255, 0.12);
+        padding: 0.1rem 0.4rem;
+        border-radius: 5px;
+        font-size: 0.85em;
+    }
+
+    .diagram-wrap {
+        margin-top: 1.2rem;
+        background: var(--forest-900);
+        border-radius: 14px;
+        padding: 1.5rem;
+        overflow: auto;
+    }
+
+    .diagram-wrap .mermaid {
+        display: flex;
+        justify-content: center;
+    }
+
+    .legend {
+        margin-top: 1rem;
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        font-size: 0.85rem;
+        color: var(--muted);
+    }
+
+    .legend span.dot {
+        display: inline-block;
+        width: 0.7rem;
+        height: 0.7rem;
+        border-radius: 50%;
+        margin-right: 0.35rem;
+    }
+
+    .code-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1.2rem;
+        background: var(--forest-900);
+        border-radius: 10px 10px 0 0;
+        padding: 0.6rem 1rem;
+    }
+
+    .code-toolbar .filename {
+        color: var(--leaf-200);
+        font-family: "Cascadia Code", Consolas, monospace;
+        font-size: 0.85rem;
+    }
+
+    .copy-btn {
+        background: var(--leaf-400);
+        color: var(--forest-900);
+        border: none;
+        padding: 0.4rem 0.9rem;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 0.82rem;
+        transition: background 0.2s ease;
+    }
+
+    .copy-btn:hover { background: var(--leaf-300); }
+
+    pre.code-block {
+        margin: 0;
+        border-radius: 0 0 10px 10px;
+        max-height: 640px;
+        overflow: auto;
+    }
+
+    pre.code-block code {
+        font-family: "Cascadia Code", Consolas, monospace;
+        font-size: 0.85rem;
+        padding: 1.2rem !important;
+        display: block;
+    }
+
+    footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+        padding: 1.5rem 2rem 2.5rem;
+    }
+
+    footer strong { color: var(--forest-700); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+    <div class="hero-inner">
+        <div class="brand-block">
+            <div class="brand"><span class="leaf">🌿</span> EcoTrack</div>
+            <div class="tagline">Mesure, analyse et réduction de l'empreinte carbone IT — pour DSI &amp; directions RSE.</div>
+        </div>
+        <nav class="toc">
+            <a href="#description">Description</a>
+            <a href="#erd">Modèle de données (ERD)</a>
+            <a href="#sql">Script SQL Server</a>
+            <a href="#user-story">User Story</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <section class="card" id="description">
+        <h2>📋 Description de l'application <span class="badge">Contexte métier</span></h2>
+        <p>
+            <strong>EcoTrack</strong> est une plateforme SaaS B2B novatrice conçue pour aider les entreprises
+            à mesurer, analyser et réduire l'empreinte carbone de leur infrastructure informatique.
+            Face aux nouvelles réglementations environnementales (comme la <strong>CSRD</strong> en Europe)
+            et à la pression pour un numérique responsable, EcoTrack agrège les données de consommation
+            énergétique des serveurs, des postes de travail et du réseau.
+        </p>
+        <p>
+            L'objectif est de fournir aux DSI et aux directions RSE des tableaux de bord décisionnels
+            et des pistes d'optimisation (<strong>Green IT</strong>).
+        </p>
+
+        <div class="context-grid">
+            <div class="item">
+                <h3>🏢 Cible</h3>
+                <p>Entreprises (DSI, RSE) souhaitant piloter leur sobriété numérique.</p>
+            </div>
+            <div class="item">
+                <h3>📊 Valeur</h3>
+                <p>Dashboards décisionnels et recommandations d'optimisation Green IT.</p>
+            </div>
+            <div class="item">
+                <h3>⚖️ Conformité</h3>
+                <p>Alignement avec les exigences de reporting extra-financier (CSRD).</p>
+            </div>
+            <div class="item">
+                <h3>🖥️ Données agrégées</h3>
+                <p>Consommation énergétique des serveurs, postes de travail et réseau.</p>
+            </div>
+        </div>
+
+        <ul class="scope-list">
+            <li>🏬 Entreprises clientes</li>
+            <li>👤 Employés</li>
+            <li>💻 Assets IT (Laptops, Serveurs)</li>
+            <li>🔗 Affectations d'assets</li>
+            <li>⚡ Historique de conso journalier</li>
+        </ul>
+    </section>
+
+    <section class="card" id="erd">
+        <h2>🗺️ Modèle Entité-Relation <span class="badge">Mermaid.js</span></h2>
+        <p>Diagramme relationnel du MVP : entreprises, employés, assets IT, affectations et consommation journalière.</p>
+
+        <div class="diagram-wrap">
+            <pre class="mermaid">
+erDiagram
+    COMPANY ||--o{ EMPLOYEE : employs
+    COMPANY ||--o{ IT_ASSET : owns
+    EMPLOYEE ||--o{ ASSET_ASSIGNMENT : receives
+    IT_ASSET ||--o{ ASSET_ASSIGNMENT : has
+    IT_ASSET ||--o{ DAILY_CONSUMPTION : records
+
+    COMPANY {
+        int CompanyId PK
+        nvarchar LegalName
+        nvarchar RegistrationNumber UK
+        nvarchar CountryCode
+        bit IsActive
+        datetime2 CreatedAt
+    }
+
+    EMPLOYEE {
+        int EmployeeId PK
+        int CompanyId FK
+        nvarchar EmployeeNumber
+        nvarchar FirstName
+        nvarchar LastName
+        nvarchar Email
+        nvarchar Department
+        bit IsActive
+        datetime2 CreatedAt
+    }
+
+    IT_ASSET {
+        bigint AssetId PK
+        int CompanyId FK
+        nvarchar AssetTag
+        nvarchar AssetType
+        nvarchar HostName
+        nvarchar Manufacturer
+        nvarchar Model
+        nvarchar SerialNumber
+        date PurchaseDate
+        nvarchar Status
+        datetime2 CreatedAt
+    }
+
+    ASSET_ASSIGNMENT {
+        bigint AssignmentId PK
+        bigint AssetId FK
+        int EmployeeId FK
+        date AssignedFrom
+        date AssignedTo
+        nvarchar AssignmentNotes
+    }
+
+    DAILY_CONSUMPTION {
+        bigint ConsumptionId PK
+        bigint AssetId FK
+        date ConsumptionDate
+        decimal EnergyKwh
+        decimal CarbonKgCo2e
+        nvarchar DataSource
+        datetime2 RecordedAt
+    }
+            </pre>
+        </div>
+
+        <div class="legend">
+            <span><span class="dot" style="background:var(--leaf-400)"></span>PK — Clé primaire</span>
+            <span><span class="dot" style="background:var(--leaf-300)"></span>FK — Clé étrangère</span>
+            <span><span class="dot" style="background:var(--leaf-200)"></span>UK — Clé unique</span>
+        </div>
+    </section>
+
+    <section class="card" id="sql">
+        <h2>🗄️ Script DDL T-SQL <span class="badge">SQL Server</span></h2>
+        <p>
+            Création de la base <strong>EcoTrack</strong>, des 5 tables, clés primaires/étrangères,
+            contraintes de validation, index non-clusterisés optimisés pour la lecture, et bloc
+            de vérification du déploiement.
+        </p>
+
+        <div class="code-toolbar">
+            <span class="filename">EcoTrack-DDL.sql</span>
+            <button class="copy-btn" onclick="copySql()">📋 Copier</button>
+        </div>
+        <pre class="code-block"><code class="language-sql" id="sql-code"></code></pre>
+    </section>
+
+    <section class="card" id="user-story">
+        <h2>🧑‍💻 User Story &amp; Critères d'Acceptation <span class="badge">Product Backlog</span></h2>
+        <p>
+            Formalisation du besoin client : limiter à <strong>3 appareils actifs</strong> le nombre
+            d'assets IT assignés simultanément à un même employé.
+        </p>
+
+        <div class="story-box">
+            <p><strong>En tant que</strong> gestionnaire des assets IT (Administrateur EcoTrack),</p>
+            <p><strong>Je veux</strong> pouvoir affecter un nouvel appareil (laptop ou serveur) au profil d'un employé,
+               uniquement si celui-ci possède moins de 3 appareils actifs,</p>
+            <p><strong>Afin de</strong> garantir une allocation maîtrisée et équitable du parc informatique, et fiabiliser
+               le suivi de l'empreinte carbone associée à chaque collaborateur.</p>
+        </div>
+
+        <div class="rule-box">
+            📏 <strong>Règle métier :</strong> un employé ne peut pas avoir plus de 3 appareils actifs
+            (<code>AssetAssignment</code> sans <code>AssignedTo</code> renseigné) assignés simultanément.
+        </div>
+
+        <div class="code-toolbar">
+            <span class="filename">affectation-appareil.feature</span>
+            <button class="copy-btn" onclick="copyGherkin()">📋 Copier</button>
+        </div>
+        <pre class="code-block"><code class="language-gherkin" id="gherkin-code"></code></pre>
+    </section>
+
+</main>
+
+<footer>
+    Généré pour le MVP <strong>EcoTrack</strong> — modèle relationnel SQL Server &amp; diagramme Mermaid.js.
+</footer>
+
+<script type="text/plain" id="sql-source">
+/*
+    EcoTrack MVP - SQL Server relational model
+    Scope: companies, employees, IT assets, asset assignments and daily consumption.
+*/
+
+IF DB_ID(N'EcoTrack') IS NULL
+BEGIN
+    EXEC (N'CREATE DATABASE [EcoTrack]');
+END;
+GO
+
+USE [EcoTrack];
+GO
+
+SET ANSI_NULLS ON;
+GO
+SET QUOTED_IDENTIFIER ON;
+GO
+
+CREATE TABLE dbo.Company
+(
+    CompanyId           int IDENTITY(1, 1) NOT NULL,
+    LegalName           nvarchar(200) NOT NULL,
+    RegistrationNumber  nvarchar(50) NULL,
+    CountryCode         char(2) NOT NULL,
+    IsActive            bit NOT NULL
+        CONSTRAINT DF_Company_IsActive DEFAULT (1),
+    CreatedAt           datetime2(0) NOT NULL
+        CONSTRAINT DF_Company_CreatedAt DEFAULT (SYSUTCDATETIME()),
+
+    CONSTRAINT PK_Company PRIMARY KEY CLUSTERED (CompanyId),
+    CONSTRAINT UQ_Company_RegistrationNumber UNIQUE (RegistrationNumber),
+    CONSTRAINT CK_Company_CountryCode CHECK (CountryCode LIKE '[A-Z][A-Z]')
+);
+GO
+
+CREATE TABLE dbo.Employee
+(
+    EmployeeId      int IDENTITY(1, 1) NOT NULL,
+    CompanyId       int NOT NULL,
+    EmployeeNumber  nvarchar(50) NOT NULL,
+    FirstName       nvarchar(100) NOT NULL,
+    LastName        nvarchar(100) NOT NULL,
+    Email           nvarchar(320) NOT NULL,
+    Department      nvarchar(150) NULL,
+    IsActive        bit NOT NULL
+        CONSTRAINT DF_Employee_IsActive DEFAULT (1),
+    CreatedAt       datetime2(0) NOT NULL
+        CONSTRAINT DF_Employee_CreatedAt DEFAULT (SYSUTCDATETIME()),
+
+    CONSTRAINT PK_Employee PRIMARY KEY CLUSTERED (EmployeeId),
+    CONSTRAINT FK_Employee_Company FOREIGN KEY (CompanyId)
+        REFERENCES dbo.Company (CompanyId),
+    CONSTRAINT UQ_Employee_Company_EmployeeNumber
+        UNIQUE (CompanyId, EmployeeNumber),
+    CONSTRAINT UQ_Employee_Company_Email
+        UNIQUE (CompanyId, Email)
+);
+GO
+
+CREATE TABLE dbo.ITAsset
+(
+    AssetId         bigint IDENTITY(1, 1) NOT NULL,
+    CompanyId       int NOT NULL,
+    AssetTag        nvarchar(100) NOT NULL,
+    AssetType       varchar(20) NOT NULL,
+    HostName        nvarchar(255) NULL,
+    Manufacturer    nvarchar(100) NULL,
+    Model           nvarchar(150) NULL,
+    SerialNumber    nvarchar(150) NULL,
+    PurchaseDate    date NULL,
+    Status          varchar(20) NOT NULL
+        CONSTRAINT DF_ITAsset_Status DEFAULT ('Active'),
+    CreatedAt       datetime2(0) NOT NULL
+        CONSTRAINT DF_ITAsset_CreatedAt DEFAULT (SYSUTCDATETIME()),
+
+    CONSTRAINT PK_ITAsset PRIMARY KEY CLUSTERED (AssetId),
+    CONSTRAINT FK_ITAsset_Company FOREIGN KEY (CompanyId)
+        REFERENCES dbo.Company (CompanyId),
+    CONSTRAINT UQ_ITAsset_Company_AssetTag
+        UNIQUE (CompanyId, AssetTag),
+    CONSTRAINT CK_ITAsset_AssetType
+        CHECK (AssetType IN ('Laptop', 'Server')),
+    CONSTRAINT CK_ITAsset_Status
+        CHECK (Status IN ('Active', 'Inactive', 'Retired', 'Disposed'))
+);
+GO
+
+CREATE TABLE dbo.AssetAssignment
+(
+    AssignmentId      bigint IDENTITY(1, 1) NOT NULL,
+    AssetId           bigint NOT NULL,
+    EmployeeId        int NOT NULL,
+    AssignedFrom      date NOT NULL,
+    AssignedTo        date NULL,
+    AssignmentNotes   nvarchar(500) NULL,
+
+    CONSTRAINT PK_AssetAssignment PRIMARY KEY CLUSTERED (AssignmentId),
+    CONSTRAINT FK_AssetAssignment_Asset FOREIGN KEY (AssetId)
+        REFERENCES dbo.ITAsset (AssetId),
+    CONSTRAINT FK_AssetAssignment_Employee FOREIGN KEY (EmployeeId)
+        REFERENCES dbo.Employee (EmployeeId),
+    CONSTRAINT CK_AssetAssignment_DateRange
+        CHECK (AssignedTo IS NULL OR AssignedTo >= AssignedFrom)
+);
+GO
+
+CREATE TABLE dbo.DailyConsumption
+(
+    ConsumptionId    bigint IDENTITY(1, 1) NOT NULL,
+    AssetId          bigint NOT NULL,
+    ConsumptionDate  date NOT NULL,
+    EnergyKwh        decimal(12, 4) NOT NULL,
+    CarbonKgCo2e     decimal(12, 4) NULL,
+    DataSource       nvarchar(100) NULL,
+    RecordedAt       datetime2(0) NOT NULL
+        CONSTRAINT DF_DailyConsumption_RecordedAt DEFAULT (SYSUTCDATETIME()),
+
+    CONSTRAINT PK_DailyConsumption PRIMARY KEY CLUSTERED (ConsumptionId),
+    CONSTRAINT FK_DailyConsumption_Asset FOREIGN KEY (AssetId)
+        REFERENCES dbo.ITAsset (AssetId),
+    CONSTRAINT UQ_DailyConsumption_Asset_Date
+        UNIQUE (AssetId, ConsumptionDate),
+    CONSTRAINT CK_DailyConsumption_EnergyKwh CHECK (EnergyKwh >= 0),
+    CONSTRAINT CK_DailyConsumption_CarbonKgCo2e
+        CHECK (CarbonKgCo2e IS NULL OR CarbonKgCo2e >= 0)
+);
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX UX_ITAsset_Company_SerialNumber
+    ON dbo.ITAsset (CompanyId, SerialNumber)
+    WHERE SerialNumber IS NOT NULL;
+GO
+
+/* Read-oriented nonclustered indexes. */
+CREATE NONCLUSTERED INDEX IX_Employee_Company_Active
+    ON dbo.Employee (CompanyId, IsActive)
+    INCLUDE (EmployeeNumber, FirstName, LastName, Email, Department);
+GO
+
+CREATE NONCLUSTERED INDEX IX_ITAsset_Company_Type_Status
+    ON dbo.ITAsset (CompanyId, AssetType, Status)
+    INCLUDE (AssetTag, HostName, Manufacturer, Model, SerialNumber);
+GO
+
+CREATE NONCLUSTERED INDEX IX_AssetAssignment_Employee_Dates
+    ON dbo.AssetAssignment (EmployeeId, AssignedFrom, AssignedTo)
+    INCLUDE (AssetId, AssignmentNotes);
+GO
+
+CREATE NONCLUSTERED INDEX IX_AssetAssignment_Asset_Dates
+    ON dbo.AssetAssignment (AssetId, AssignedFrom, AssignedTo)
+    INCLUDE (EmployeeId, AssignmentNotes);
+GO
+
+CREATE NONCLUSTERED INDEX IX_DailyConsumption_Asset_Date
+    ON dbo.DailyConsumption (AssetId, ConsumptionDate)
+    INCLUDE (EnergyKwh, CarbonKgCo2e, DataSource, RecordedAt);
+GO
+
+CREATE NONCLUSTERED INDEX IX_DailyConsumption_Date_Asset
+    ON dbo.DailyConsumption (ConsumptionDate, AssetId)
+    INCLUDE (EnergyKwh, CarbonKgCo2e, DataSource);
+GO
+
+/* Deployment verification. */
+DECLARE @ExpectedTableCount int = 5;
+DECLARE @ExpectedForeignKeyCount int = 5;
+DECLARE @ExpectedNonclusteredIndexCount int = 7;
+DECLARE @ActualTableCount int;
+DECLARE @ActualForeignKeyCount int;
+DECLARE @ActualNonclusteredIndexCount int;
+
+SELECT
+    DB_NAME() AS DatabaseName,
+    t.name AS TableName,
+    SUM(p.rows) AS RowCount
+FROM sys.tables AS t
+INNER JOIN sys.partitions AS p
+    ON p.object_id = t.object_id
+   AND p.index_id IN (0, 1)
+WHERE t.schema_id = SCHEMA_ID(N'dbo')
+GROUP BY t.name;
+
+SELECT
+    i.name AS IndexName,
+    OBJECT_SCHEMA_NAME(i.object_id) AS SchemaName,
+    OBJECT_NAME(i.object_id) AS TableName,
+    i.type_desc AS IndexType
+FROM sys.indexes AS i
+WHERE i.object_id IN
+(
+    OBJECT_ID(N'dbo.Company'),
+    OBJECT_ID(N'dbo.Employee'),
+    OBJECT_ID(N'dbo.ITAsset'),
+    OBJECT_ID(N'dbo.AssetAssignment'),
+    OBJECT_ID(N'dbo.DailyConsumption')
+)
+AND i.index_id > 0
+ORDER BY TableName, i.index_id;
+
+SELECT
+    fk.name AS ForeignKeyName,
+    OBJECT_SCHEMA_NAME(fk.parent_object_id) AS ParentTable,
+    OBJECT_SCHEMA_NAME(fk.referenced_object_id) AS ReferencedSchema,
+    OBJECT_NAME(fk.referenced_object_id) AS ReferencedTable
+FROM sys.foreign_keys AS fk
+WHERE fk.parent_object_id IN
+(
+    OBJECT_ID(N'dbo.Employee'),
+    OBJECT_ID(N'dbo.ITAsset'),
+    OBJECT_ID(N'dbo.AssetAssignment'),
+    OBJECT_ID(N'dbo.DailyConsumption')
+)
+ORDER BY ParentTable, ForeignKeyName;
+
+SELECT @ActualTableCount = COUNT(*)
+FROM sys.tables
+WHERE schema_id = SCHEMA_ID(N'dbo')
+  AND name IN
+  (
+      N'Company', N'Employee', N'ITAsset',
+      N'AssetAssignment', N'DailyConsumption'
+  );
+
+SELECT @ActualForeignKeyCount = COUNT(*)
+FROM sys.foreign_keys
+WHERE parent_object_id IN
+(
+    OBJECT_ID(N'dbo.Employee'),
+    OBJECT_ID(N'dbo.ITAsset'),
+    OBJECT_ID(N'dbo.AssetAssignment'),
+    OBJECT_ID(N'dbo.DailyConsumption')
+);
+
+SELECT @ActualNonclusteredIndexCount = COUNT(*)
+FROM sys.indexes AS i
+WHERE i.type_desc = N'NONCLUSTERED'
+  AND i.object_id IN
+(
+      OBJECT_ID(N'dbo.Company'),
+      OBJECT_ID(N'dbo.Employee'),
+      OBJECT_ID(N'dbo.ITAsset'),
+      OBJECT_ID(N'dbo.AssetAssignment'),
+      OBJECT_ID(N'dbo.DailyConsumption')
+  );
+
+IF DB_NAME() <> N'EcoTrack'
+    THROW 51000, 'Verification failed: wrong database context.', 1;
+
+IF @ActualTableCount <> @ExpectedTableCount
+    THROW 51001, 'Verification failed: expected tables are missing.', 1;
+
+IF @ActualForeignKeyCount <> @ExpectedForeignKeyCount
+    THROW 51002, 'Verification failed: expected foreign keys are missing.', 1;
+
+IF @ActualNonclusteredIndexCount <> @ExpectedNonclusteredIndexCount
+    THROW 51003, 'Verification failed: expected nonclustered indexes are missing.', 1;
+
+SELECT
+    N'PASS' AS VerificationStatus,
+    DB_NAME() AS DatabaseName,
+    @ActualTableCount AS TableCount,
+    @ActualForeignKeyCount AS ForeignKeyCount,
+    @ActualNonclusteredIndexCount AS NonclusteredIndexCount;
+GO
+</script>
+
+<script type="text/plain" id="gherkin-source">
+Fonctionnalité: Affectation d'un appareil IT à un employé
+  En tant que gestionnaire des assets IT
+  Je veux affecter un nouvel appareil à un employé
+  Afin de garantir une allocation équitable et traçable du parc informatique
+
+  Contexte:
+    Given le nombre maximal d'appareils actifs autorisés par employé est fixé à 3
+
+  Scénario: Cas nominal - affectation autorisée sous la limite
+    Given l'employé "Jean Dupont" possède 2 appareils actifs assignés
+    And le serveur "SRV-042" est disponible et non assigné
+    When le gestionnaire affecte le serveur "SRV-042" à l'employé "Jean Dupont"
+    Then l'affectation est enregistrée avec succès dans "AssetAssignment"
+    And l'employé "Jean Dupont" possède désormais 3 appareils actifs
+
+  Scénario: Cas d'erreur - limite de 3 appareils atteinte
+    Given l'employé "Jean Dupont" possède déjà 3 appareils actifs assignés
+    And le serveur "SRV-099" est disponible et non assigné
+    When le gestionnaire tente d'affecter le serveur "SRV-099" à l'employé "Jean Dupont"
+    Then la demande d'affectation est rejetée
+    And un message d'erreur "Limite de 3 appareils atteinte pour cet employé" est retourné
+    And l'employé "Jean Dupont" conserve exactement 3 appareils actifs
+    And aucune nouvelle ligne n'est créée dans "AssetAssignment"
+</script>
+
+<script>
+    mermaid.initialize({ startOnLoad: true, theme: 'dark', themeVariables: {
+        primaryColor: '#1b4332',
+        primaryTextColor: '#d8f3dc',
+        primaryBorderColor: '#52b788',
+        lineColor: '#74c69d',
+        secondaryColor: '#2d6a4f',
+        tertiaryColor: '#12402c'
+    }});
+
+    const sqlText = document.getElementById('sql-source').textContent.trim();
+    const sqlCodeEl = document.getElementById('sql-code');
+    sqlCodeEl.textContent = sqlText;
+    hljs.highlightElement(sqlCodeEl);
+
+    function copySql() {
+        navigator.clipboard.writeText(sqlText).then(() => {
+            const btn = document.querySelector('#sql .copy-btn');
+            const original = btn.textContent;
+            btn.textContent = '✅ Copié';
+            setTimeout(() => { btn.textContent = original; }, 1500);
+        });
+    }
+
+    const gherkinText = document.getElementById('gherkin-source').textContent.trim();
+    const gherkinCodeEl = document.getElementById('gherkin-code');
+    gherkinCodeEl.textContent = gherkinText;
+    hljs.highlightElement(gherkinCodeEl);
+
+    function copyGherkin() {
+        navigator.clipboard.writeText(gherkinText).then(() => {
+            const btn = document.querySelector('#user-story .copy-btn');
+            const original = btn.textContent;
+            btn.textContent = '✅ Copié';
+            setTimeout(() => { btn.textContent = original; }, 1500);
+        });
+    }
+
+    // Computed at click time so the target section never ends up hidden under the sticky header,
+    // even after the Mermaid diagram finishes its async render and reflows the page.
+    document.querySelectorAll('nav.toc a[href^="#"]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const target = document.getElementById(link.getAttribute('href').slice(1));
+            if (!target) return;
+            const header = document.querySelector('header.hero');
+            const top = target.getBoundingClientRect().top + window.scrollY - header.offsetHeight - 24;
+            window.scrollTo({ top, behavior: 'smooth' });
+            history.replaceState(null, '', link.getAttribute('href'));
+        });
+    });
+</script>
+
+</body>
+</html>

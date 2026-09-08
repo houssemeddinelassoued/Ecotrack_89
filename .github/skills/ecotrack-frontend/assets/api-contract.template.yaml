@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: EcoTrack API
+  version: 0.1.0
+  description: Contrat initial a valider avec le backend avant tout composant connecte.
+servers:
+  - url: /api/v1
+security:
+  - bearerAuth: []
+paths:
+  /dashboard:
+    get:
+      operationId: getDashboardSummary
+      summary: Retourne les indicateurs EcoTrack pour une periode
+      parameters:
+        - $ref: "#/components/parameters/PeriodFrom"
+        - $ref: "#/components/parameters/PeriodTo"
+      responses:
+        "200":
+          description: Indicateurs calcules pour l'entreprise authentifiee
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardSummary"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    PeriodFrom:
+      name: from
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+    PeriodTo:
+      name: to
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+  schemas:
+    DecimalQuantity:
+      type: string
+      pattern: "^(0|[1-9][0-9]*)(\\.[0-9]{1,4})?$"
+      examples:
+        - "4218.7500"
+    AssetSummary:
+      type: object
+      additionalProperties: false
+      required:
+        - assetId
+        - assetTag
+        - assetType
+        - displayName
+        - status
+        - energyInKwh
+        - carbonInKilogramsOfCo2e
+      properties:
+        assetId:
+          type: string
+          pattern: "^[1-9][0-9]*$"
+        assetTag:
+          type: string
+          minLength: 1
+        assetType:
+          type: string
+          enum: [LAPTOP, SERVER]
+        displayName:
+          type: string
+          minLength: 1
+        status:
+          type: string
+          enum: [ACTIVE, INACTIVE, RETIRED, DISPOSED]
+        assignedEmployeeName:
+          type: [string, "null"]
+        energyInKwh:
+          $ref: "#/components/schemas/DecimalQuantity"
+        carbonInKilogramsOfCo2e:
+          $ref: "#/components/schemas/DecimalQuantity"
+    DashboardSummary:
+      type: object
+      additionalProperties: false
+      required:
+        - periodFrom
+        - periodTo
+        - energyInKwh
+        - carbonInKilogramsOfCo2e
+        - activeAssetCount
+        - unassignedAssetCount
+        - highestConsumers
+      properties:
+        periodFrom:
+          type: string
+          format: date
+        periodTo:
+          type: string
+          format: date
+        energyInKwh:
+          $ref: "#/components/schemas/DecimalQuantity"
+        carbonInKilogramsOfCo2e:
+          $ref: "#/components/schemas/DecimalQuantity"
+        activeAssetCount:
+          type: integer
+          minimum: 0
+        unassignedAssetCount:
+          type: integer
+          minimum: 0
+        highestConsumers:
+          type: array
+          items:
+            $ref: "#/components/schemas/AssetSummary"
+    ApiError:
+      type: object
+      additionalProperties: false
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          enum: [VALIDATION_ERROR, CONFLICT, FORBIDDEN, NOT_FOUND]
+        message:
+          type: string
+        fieldErrors:
+          type: object
+          additionalProperties:
+            type: string
+  responses:
+    ValidationError:
+      description: Parametres invalides
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"
+    Unauthorized:
+      description: Authentification requise
+    Forbidden:
+      description: Operation non autorisee pour l'entreprise authentifiee

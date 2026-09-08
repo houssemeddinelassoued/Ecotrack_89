@@ -1,0 +1,5 @@
+target/
+bin/
+.env
+postgres_data/
+*.log

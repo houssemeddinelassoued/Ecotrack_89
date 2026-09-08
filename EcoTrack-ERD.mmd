@@ -1,0 +1,60 @@
+erDiagram
+    COMPANY ||--o{ EMPLOYEE : employs
+    COMPANY ||--o{ IT_ASSET : owns
+    EMPLOYEE ||--o{ ASSET_ASSIGNMENT : receives
+    IT_ASSET ||--o{ ASSET_ASSIGNMENT : has
+    IT_ASSET ||--o{ DAILY_CONSUMPTION : records
+
+    COMPANY {
+        int CompanyId PK
+        nvarchar LegalName
+        nvarchar RegistrationNumber UK
+        nvarchar CountryCode
+        bit IsActive
+        datetime2 CreatedAt
+    }
+
+    EMPLOYEE {
+        int EmployeeId PK
+        int CompanyId FK
+        nvarchar EmployeeNumber
+        nvarchar FirstName
+        nvarchar LastName
+        nvarchar Email
+        nvarchar Department
+        bit IsActive
+        datetime2 CreatedAt
+    }
+
+    IT_ASSET {
+        bigint AssetId PK
+        int CompanyId FK
+        nvarchar AssetTag
+        nvarchar AssetType
+        nvarchar HostName
+        nvarchar Manufacturer
+        nvarchar Model
+        nvarchar SerialNumber
+        date PurchaseDate
+        nvarchar Status
+        datetime2 CreatedAt
+    }
+
+    ASSET_ASSIGNMENT {
+        bigint AssignmentId PK
+        bigint AssetId FK
+        int EmployeeId FK
+        date AssignedFrom
+        date AssignedTo
+        nvarchar AssignmentNotes
+    }
+
+    DAILY_CONSUMPTION {
+        bigint ConsumptionId PK
+        bigint AssetId FK
+        date ConsumptionDate
+        decimal EnergyKwh
+        decimal CarbonKgCo2e
+        nvarchar DataSource
+        datetime2 RecordedAt
+    }

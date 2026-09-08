@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EcoTrack - Paramètres</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #006948;
+            --primary-hover: #00855d;
+            --primary-soft: #e2f5ec;
+            --nav: #213145;
+            --surface: #f8f9ff;
+            --surface-low: #eff4ff;
+            --white: #ffffff;
+            --text: #0b1c30;
+            --muted: #566174;
+            --outline: #bccac0;
+            --blue: #006194;
+            --blue-soft: #e4f2ff;
+            --warning: #9a5a00;
+            --warning-soft: #fff2d8;
+            --error: #ba1a1a;
+            --error-soft: #ffdad6;
+            --sidebar: 264px;
+            --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.03);
+        }
+
+        * { box-sizing: border-box; }
+        html { color-scheme: light; }
+        body {
+            margin: 0;
+            background: var(--surface);
+            color: var(--text);
+            font-family: Inter, sans-serif;
+            font-size: 14px;
+            line-height: 1.45;
+        }
+        button, input, select { font: inherit; }
+        button, select { cursor: pointer; }
+        button:focus-visible, input:focus-visible, select:focus-visible {
+            outline: 3px solid rgba(0, 105, 72, 0.22);
+            outline-offset: 2px;
+        }
+        .material-symbols-outlined { font-size: 20px; line-height: 1; }
+
+        .sidebar {
+            position: fixed;
+            inset: 0 auto 0 0;
+            z-index: 30;
+            width: var(--sidebar);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #eaf1ff;
+            background: var(--nav);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .brand {
+            height: 64px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .brand-mark {
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+            color: #002114;
+            background: #68dba9;
+            border-radius: 8px;
+        }
+        .brand strong, .brand small { display: block; }
+        .brand small { margin-top: 1px; color: #68dba9; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+        .nav-wrap { padding: 24px 16px; }
+        .nav-label { margin: 0 8px 8px; color: #9dafbd; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+        .global-nav { display: grid; gap: 4px; }
+        .global-nav a {
+            min-height: 38px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #c9d6e4;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+        .global-nav a:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+        .global-nav a.active { color: #fff; background: var(--primary); font-weight: 600; }
+        .sidebar-footer { padding: 16px; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+        .compliance {
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        .compliance small, .compliance strong { display: block; }
+        .compliance small { color: #a9bac8; font-size: 11px; }
+        .compliance strong { font-size: 12px; }
+        .compliance .material-symbols-outlined { color: #68dba9; }
+
+        .topbar {
+            position: fixed;
+            inset: 0 0 auto var(--sidebar);
+            z-index: 20;
+            height: 64px;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            background: rgba(248, 249, 255, 0.92);
+            border-bottom: 1px solid rgba(188, 202, 192, 0.38);
+            backdrop-filter: blur(14px);
+        }
+        .search { position: relative; width: min(480px, 48vw); }
+        .search .material-symbols-outlined { position: absolute; left: 12px; top: 10px; color: var(--muted); font-size: 18px; }
+        .search input {
+            width: 100%;
+            height: 40px;
+            padding: 0 14px 0 40px;
+            color: var(--text);
+            background: var(--white);
+            border: 1px solid rgba(188, 202, 192, 0.7);
+            border-radius: 8px;
+        }
+        .account { display: flex; align-items: center; gap: 12px; white-space: nowrap; }
+        .icon-button {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+            background: transparent;
+            border: 0;
+            border-radius: 8px;
+        }
+        .icon-button:hover { background: var(--surface-low); color: var(--text); }
+        .avatar { width: 34px; height: 34px; display: grid; place-items: center; color: #fff; background: var(--primary); border-radius: 50%; font-weight: 700; }
+        .account-copy strong, .account-copy small { display: block; }
+        .account-copy strong { font-size: 13px; }
+        .account-copy small { color: var(--muted); font-size: 11px; }
+
+        .workspace { min-height: 100vh; margin-left: var(--sidebar); padding: 96px 32px 40px; }
+        .page { max-width: 1320px; margin: 0 auto; }
+        .page-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+        .eyebrow { margin-bottom: 5px; display: flex; align-items: center; gap: 8px; color: var(--primary); font-size: 11px; font-weight: 700; text-transform: uppercase; }
+        h1 { margin: 0; font-size: 28px; line-height: 1.2; }
+        .lead { max-width: 680px; margin: 6px 0 0; color: var(--muted); }
+        .tenant-badge {
+            padding: 10px 13px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            background: var(--white);
+            border: 1px solid rgba(188, 202, 192, 0.55);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            white-space: nowrap;
+        }
+        .tenant-badge .material-symbols-outlined { color: var(--primary); }
+
+        .settings-layout { display: grid; grid-template-columns: 238px minmax(0, 1fr); gap: 24px; align-items: start; }
+        .settings-nav {
+            position: sticky;
+            top: 88px;
+            padding: 8px;
+            display: grid;
+            gap: 4px;
+            background: var(--white);
+            border: 1px solid rgba(188, 202, 192, 0.45);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        .settings-tab {
+            width: 100%;
+            min-height: 48px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--muted);
+            text-align: left;
+            background: transparent;
+            border: 0;
+            border-radius: 7px;
+        }
+        .settings-tab span:last-child { min-width: 0; }
+        .settings-tab strong, .settings-tab small { display: block; }
+        .settings-tab strong { color: inherit; font-size: 13px; }
+        .settings-tab small { margin-top: 1px; color: #7b8795; font-size: 10px; }
+        .settings-tab:hover { color: var(--text); background: var(--surface-low); }
+        .settings-tab.active { color: var(--primary); background: var(--primary-soft); }
+        .settings-tab.active small { color: #39745f; }
+        .mobile-settings-nav { display: none; }
+
+        .panel { display: none; }
+        .panel.active { display: block; animation: reveal 180ms ease-out; }
+        @keyframes reveal { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+        .panel-heading { margin-bottom: 16px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+        .panel-heading h2 { margin: 0; font-size: 20px; }
+        .panel-heading p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+        .status-pill { padding: 5px 9px; color: var(--primary); background: var(--primary-soft); border-radius: 999px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+        .dirty-pill { color: var(--warning); background: var(--warning-soft); }
+        .card {
+            padding: 24px;
+            background: var(--white);
+            border: 1px solid rgba(188, 202, 192, 0.45);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        .card + .card { margin-top: 16px; }
+        .card-title { margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .card-title .material-symbols-outlined { color: var(--primary); }
+        .card-title h3 { margin: 0; font-size: 16px; }
+        .card-title p { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
+        .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+        .field { display: grid; gap: 7px; align-content: start; }
+        .field.full { grid-column: 1 / -1; }
+        label { font-size: 12px; font-weight: 700; }
+        .field input, .field select {
+            width: 100%;
+            height: 42px;
+            padding: 0 12px;
+            color: var(--text);
+            background: var(--white);
+            border: 1px solid #aab7af;
+            border-radius: 7px;
+        }
+        .field input:hover, .field select:hover { border-color: #74827a; }
+        .field input[readonly] { color: var(--muted); background: var(--surface-low); cursor: not-allowed; }
+        .input-unit { position: relative; }
+        .input-unit input { padding-right: 118px; }
+        .input-unit span { position: absolute; right: 12px; top: 12px; color: var(--muted); font-size: 12px; pointer-events: none; }
+        .hint { color: var(--muted); font-size: 11px; }
+        .error-message { min-height: 16px; color: var(--error); font-size: 11px; }
+        .invalid { border-color: var(--error) !important; background: #fffafa !important; }
+
+        .notice {
+            margin-bottom: 16px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #674000;
+            background: var(--warning-soft);
+            border-left: 3px solid #db9200;
+            border-radius: 6px;
+        }
+        .notice strong, .notice span { display: block; }
+        .notice span { margin-top: 2px; font-size: 12px; }
+        .preview {
+            margin-top: 20px;
+            padding: 18px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 24px;
+            align-items: center;
+            background: var(--surface-low);
+            border-radius: 8px;
+        }
+        .preview-label { color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; }
+        .formula { margin: 8px 0 4px; font-size: 16px; font-weight: 600; }
+        .formula strong { color: var(--primary); }
+        .preview-note { color: var(--muted); font-size: 11px; }
+        .result { min-width: 190px; padding: 14px 18px; background: var(--white); border-radius: 8px; text-align: right; }
+        .result strong { display: block; color: var(--primary); font-size: 27px; line-height: 1.2; }
+        .result span { color: var(--muted); font-size: 11px; }
+        .action-bar {
+            position: sticky;
+            bottom: 16px;
+            z-index: 10;
+            margin-top: 16px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(188, 202, 192, 0.65);
+            border-radius: 8px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.10);
+            backdrop-filter: blur(12px);
+        }
+        .action-state { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; }
+        .actions { display: flex; gap: 8px; }
+        .button {
+            min-height: 40px;
+            padding: 0 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 0;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .button.secondary { color: var(--text); background: var(--surface-low); }
+        .button.primary { color: #fff; background: var(--primary); }
+        .button.primary:hover { background: var(--primary-hover); }
+        .button:disabled, .button:disabled:hover { color: #68756f; background: #e3e9e6; cursor: not-allowed; }
+        .spinner { width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.45); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .summary-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .summary-item { padding: 18px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; background: var(--surface-low); border-radius: 8px; }
+        .summary-item h3 { margin: 0; font-size: 14px; }
+        .summary-item p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+        .switch { position: relative; width: 42px; height: 24px; flex: 0 0 auto; }
+        .switch input { position: absolute; opacity: 0; }
+        .switch span { position: absolute; inset: 0; background: #9ba8a1; border-radius: 999px; transition: .2s; }
+        .switch span::after { content: ""; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: .2s; }
+        .switch input:checked + span { background: var(--primary); }
+        .switch input:checked + span::after { transform: translateX(18px); }
+
+        .toast {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 60;
+            max-width: 380px;
+            padding: 14px 16px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            background: var(--nav);
+            border-radius: 8px;
+            box-shadow: 0 18px 44px rgba(15, 23, 42, 0.24);
+        }
+        .toast.show { display: flex; animation: reveal 180ms ease-out; }
+        .toast .material-symbols-outlined { color: #68dba9; }
+        dialog { width: min(430px, calc(100vw - 32px)); padding: 0; border: 0; border-radius: 8px; box-shadow: 0 24px 60px rgba(15,23,42,.28); }
+        dialog::backdrop { background: rgba(15, 23, 42, 0.52); backdrop-filter: blur(3px); }
+        .dialog-body { padding: 24px; }
+        .dialog-body h2 { margin: 0; font-size: 19px; }
+        .dialog-body p { margin: 8px 0 22px; color: var(--muted); }
+        .dialog-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+        @media (max-width: 980px) {
+            :root { --sidebar: 72px; }
+            .brand { padding: 0; justify-content: center; }
+            .brand-copy, .nav-label, .global-nav a span:last-child, .compliance div { display: none; }
+            .nav-wrap { padding: 20px 10px; }
+            .global-nav a { justify-content: center; padding: 8px; }
+            .sidebar-footer { padding: 10px; }
+            .compliance { justify-content: center; padding: 12px 6px; }
+            .settings-layout { grid-template-columns: 200px minmax(0, 1fr); }
+        }
+        @media (max-width: 760px) {
+            :root { --sidebar: 0px; }
+            .sidebar { display: none; }
+            .topbar { left: 0; height: 58px; padding: 0 16px; }
+            .search { width: min(58vw, 360px); }
+            .search input { height: 38px; }
+            .search .material-symbols-outlined { top: 9px; }
+            .account-copy, .topbar .icon-button { display: none; }
+            .workspace { margin-left: 0; padding: 82px 16px 28px; }
+            .page-header { align-items: flex-start; flex-direction: column; margin-bottom: 20px; }
+            h1 { font-size: 24px; }
+            .tenant-badge { width: 100%; }
+            .settings-layout { display: block; }
+            .settings-nav { display: none; }
+            .mobile-settings-nav { display: block; margin-bottom: 16px; }
+            .mobile-settings-nav select { width: 100%; height: 44px; padding: 0 12px; background: var(--white); border: 1px solid var(--outline); border-radius: 8px; font-weight: 600; }
+            .form-grid, .summary-grid { grid-template-columns: 1fr; }
+            .field.full { grid-column: auto; }
+            .card { padding: 18px; }
+            .preview { grid-template-columns: 1fr; gap: 12px; }
+            .result { text-align: left; }
+            .action-bar { position: static; align-items: stretch; flex-direction: column; }
+            .actions { display: grid; grid-template-columns: 1fr 1.5fr; }
+            .action-state { min-height: 20px; }
+            .toast { right: 16px; bottom: 16px; left: 16px; }
+        }
+        @media (max-width: 430px) {
+            .search { width: calc(100vw - 82px); }
+            .avatar { width: 32px; height: 32px; }
+            .panel-heading { flex-direction: column; }
+            .actions { grid-template-columns: 1fr; }
+            .formula { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar" aria-label="Navigation principale">
+        <div>
+            <div class="brand">
+                <div class="brand-mark"><span class="material-symbols-outlined" aria-hidden="true">energy_savings_leaf</span></div>
+                <div class="brand-copy"><strong>EcoTrack</strong><small>GreenOps &amp; ESG</small></div>
+            </div>
+            <div class="nav-wrap">
+                <p class="nav-label">Plateforme IT &amp; Carbone</p>
+                <nav class="global-nav">
+                    <a href="#"><span class="material-symbols-outlined" aria-hidden="true">dashboard</span><span>Tableau de bord</span></a>
+                    <a href="#"><span class="material-symbols-outlined" aria-hidden="true">dns</span><span>Inventaire &amp; Actifs IT</span></a>
+                    <a href="#"><span class="material-symbols-outlined" aria-hidden="true">functions</span><span>Moteur de Calcul &amp; Facteurs</span></a>
+                    <a href="#"><span class="material-symbols-outlined" aria-hidden="true">bolt</span><span>Recommandations GreenOps</span></a>
+                    <a href="#"><span class="material-symbols-outlined" aria-hidden="true">description</span><span>Rapports &amp; Exports</span></a>
+                    <a class="active" href="#" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">settings</span><span>Paramètres</span></a>
+                </nav>
+            </div>
+        </div>
+        <div class="sidebar-footer">
+            <div class="compliance"><div><small>Calculateur Carbone</small><strong>Standard GHG &amp; CSRD</strong></div><span class="material-symbols-outlined" aria-hidden="true">verified_user</span></div>
+        </div>
+    </aside>
+
+    <header class="topbar">
+        <div class="search">
+            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+            <input type="search" aria-label="Rechercher dans EcoTrack" placeholder="Rechercher un paramètre, un site ou un facteur...">
+        </div>
+        <div class="account">
+            <button class="icon-button" type="button" aria-label="Notifications"><span class="material-symbols-outlined" aria-hidden="true">notifications</span></button>
+            <div class="avatar" aria-hidden="true">CM</div>
+            <div class="account-copy"><strong>Claire Moreau</strong><small>Administratrice GreenOps</small></div>
+        </div>
+    </header>
+
+    <main class="workspace">
+        <div class="page">
+            <header class="page-header">
+                <div>
+                    <div class="eyebrow"><span class="material-symbols-outlined" aria-hidden="true">admin_panel_settings</span>Administration de l'espace</div>
+                    <h1>Paramètres</h1>
+                    <p class="lead">Configuration de l'organisation, du calcul carbone et des accès à la plateforme EcoTrack.</p>
+                </div>
+                <div class="tenant-badge"><span class="material-symbols-outlined" aria-hidden="true">domain</span><div><strong>NovaTech France</strong><div class="hint">Organisation active · Europe/Paris</div></div></div>
+            </header>
+
+            <div class="mobile-settings-nav">
+                <label for="mobile-section">Rubrique des paramètres</label>
+                <select id="mobile-section">
+                    <option value="organisation">Organisation</option>
+                    <option value="carbon" selected>Calcul carbone</option>
+                    <option value="notifications">Notifications</option>
+                    <option value="preferences">Préférences</option>
+                    <option value="security">Accès et sécurité</option>
+                </select>
+            </div>
+
+            <div class="settings-layout">
+                <nav class="settings-nav" aria-label="Rubriques des paramètres">
+                    <button class="settings-tab" type="button" data-panel="organisation"><span class="material-symbols-outlined" aria-hidden="true">apartment</span><span><strong>Organisation</strong><small>Profil et localisation</small></span></button>
+                    <button class="settings-tab active" type="button" data-panel="carbon" aria-current="true"><span class="material-symbols-outlined" aria-hidden="true">co2</span><span><strong>Calcul carbone</strong><small>Facteur et méthode</small></span></button>
+                    <button class="settings-tab" type="button" data-panel="notifications"><span class="material-symbols-outlined" aria-hidden="true">notifications_active</span><span><strong>Notifications</strong><small>Alertes et rapports</small></span></button>
+                    <button class="settings-tab" type="button" data-panel="preferences"><span class="material-symbols-outlined" aria-hidden="true">tune</span><span><strong>Préférences</strong><small>Langue et affichage</small></span></button>
+                    <button class="settings-tab" type="button" data-panel="security"><span class="material-symbols-outlined" aria-hidden="true">shield</span><span><strong>Accès et sécurité</strong><small>Rôles et sessions</small></span></button>
+                </nav>
+
+                <section aria-live="polite">
+                    <div class="panel" id="panel-organisation">
+                        <div class="panel-heading"><div><h2>Organisation</h2><p>Informations utilisées dans les rapports et les exports réglementaires.</p></div><span class="status-pill">Organisation vérifiée</span></div>
+                        <div class="card">
+                            <div class="card-title"><span class="material-symbols-outlined" aria-hidden="true">domain</span><div><h3>Profil de l'entreprise</h3><p>Données générales du tenant EcoTrack.</p></div></div>
+                            <div class="form-grid">
+                                <div class="field"><label for="company-name">Nom de l'entreprise</label><input id="company-name" value="NovaTech France"></div>
+                                <div class="field"><label for="company-country">Pays</label><select id="company-country"><option>France</option><option>Belgique</option><option>Suisse</option></select></div>
+                                <div class="field"><label for="company-timezone">Fuseau horaire</label><select id="company-timezone"><option>Europe/Paris (UTC+1)</option></select></div>
+                                <div class="field"><label for="company-currency">Devise</label><select id="company-currency"><option>Euro (EUR)</option></select></div>
+                                <div class="field full"><label for="tenant-id">Identifiant de l'organisation</label><input id="tenant-id" value="org_novatech_fr_2048" readonly><span class="hint">Cet identifiant est immuable et n'est jamais partagé entre entreprises.</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel active" id="panel-carbon">
+                        <div class="panel-heading"><div><h2>Calcul carbone</h2><p>Définissez le facteur appliqué automatiquement aux nouvelles consommations.</p></div><span class="status-pill" id="change-status">Configuration à jour</span></div>
+                        <div class="notice" role="status"><span class="material-symbols-outlined" aria-hidden="true">update</span><div><strong>Un référentiel ADEME plus récent est disponible</strong><span>La Base Empreinte v23.2 peut être évaluée avant son activation sur l'organisation.</span></div></div>
+                        <form id="carbon-form" novalidate>
+                            <div class="card">
+                                <div class="card-title"><span class="material-symbols-outlined" aria-hidden="true">calculate</span><div><h3>Facteur d'émission par défaut</h3><p>Valeur utilisée quand aucun facteur régional plus précis n'est disponible.</p></div></div>
+                                <div class="form-grid">
+                                    <div class="field">
+                                        <label for="emission-factor">Facteur d'émission</label>
+                                        <div class="input-unit"><input id="emission-factor" name="emissionFactor" value="0,0569" inputmode="decimal" aria-describedby="factor-hint factor-error"><span>kgCO₂e/kWh</span></div>
+                                        <span class="hint" id="factor-hint">Valeur positive, avec quatre décimales au maximum.</span>
+                                        <span class="error-message" id="factor-error"></span>
+                                    </div>
+                                    <div class="field">
+                                        <label for="factor-source">Source du facteur</label>
+                                        <input id="factor-source" name="factorSource" value="Base Carbone ADEME 2026" aria-describedby="source-error">
+                                        <span class="error-message" id="source-error"></span>
+                                    </div>
+                                    <div class="field">
+                                        <label for="region">Zone géographique</label>
+                                        <select id="region" name="region"><option>France métropolitaine</option><option>Union européenne</option><option>Facteur mondial</option></select>
+                                    </div>
+                                    <div class="field">
+                                        <label for="effective-date">Date de prise d'effet</label>
+                                        <input id="effective-date" name="effectiveDate" type="date" value="2026-09-01" aria-describedby="date-error">
+                                        <span class="error-message" id="date-error"></span>
+                                    </div>
+                                    <div class="field full">
+                                        <label for="rounding">Méthode d'arrondi</label>
+                                        <input id="rounding" value="4 décimales, arrondi au plus proche (HALF_UP)" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="preview" aria-label="Aperçu du calcul carbone">
+                                    <div><div class="preview-label">Aperçu du calcul</div><div class="formula">125,5000 kWh × <strong id="preview-factor">0,0569 kgCO₂e/kWh</strong></div><div class="preview-note">L'empreinte carbone est calculée automatiquement lors de l'enregistrement d'une consommation.</div></div>
+                                    <div class="result"><span>Empreinte calculée</span><strong id="preview-result">7,1410</strong><span>kgCO₂e</span></div>
+                                </div>
+                            </div>
+
+                            <div class="action-bar">
+                                <div class="action-state"><span class="material-symbols-outlined" aria-hidden="true">verified</span><span id="action-message">Toutes les modifications sont enregistrées.</span></div>
+                                <div class="actions"><button class="button secondary" id="reset-button" type="button" disabled>Annuler</button><button class="button primary" id="save-button" type="submit" disabled><span class="material-symbols-outlined" aria-hidden="true">save</span><span>Enregistrer les modifications</span></button></div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="panel" id="panel-notifications">
+                        <div class="panel-heading"><div><h2>Notifications</h2><p>Choisissez les événements qui nécessitent l'attention de votre équipe.</p></div><span class="status-pill">3 canaux actifs</span></div>
+                        <div class="card summary-grid">
+                            <div class="summary-item"><div><h3>Consommation anormale</h3><p>Alerte immédiate lorsqu'un actif dépasse son profil habituel.</p></div><label class="switch"><input type="checkbox" checked aria-label="Activer les alertes de consommation anormale"><span></span></label></div>
+                            <div class="summary-item"><div><h3>Rapport carbone mensuel</h3><p>Synthèse envoyée aux responsables DSI et RSE.</p></div><label class="switch"><input type="checkbox" checked aria-label="Activer le rapport carbone mensuel"><span></span></label></div>
+                            <div class="summary-item"><div><h3>Actifs inactifs</h3><p>Signalement des équipements sans télémétrie depuis 14 jours.</p></div><label class="switch"><input type="checkbox" checked aria-label="Activer les alertes sur les actifs inactifs"><span></span></label></div>
+                            <div class="summary-item"><div><h3>Mises à jour réglementaires</h3><p>Nouveaux facteurs et évolutions CSRD applicables.</p></div><label class="switch"><input type="checkbox" aria-label="Activer les mises à jour réglementaires"><span></span></label></div>
+                        </div>
+                    </div>
+
+                    <div class="panel" id="panel-preferences">
+                        <div class="panel-heading"><div><h2>Préférences</h2><p>Adaptez la présentation des données à vos usages.</p></div></div>
+                        <div class="card">
+                            <div class="card-title"><span class="material-symbols-outlined" aria-hidden="true">display_settings</span><div><h3>Affichage et formats</h3><p>Ces préférences s'appliquent uniquement à votre compte.</p></div></div>
+                            <div class="form-grid">
+                                <div class="field"><label for="language">Langue</label><select id="language"><option>Français</option><option>English</option></select></div>
+                                <div class="field"><label for="date-format">Format de date</label><select id="date-format"><option>31/12/2026</option><option>2026-12-31</option></select></div>
+                                <div class="field"><label for="decimal-count">Décimales affichées</label><select id="decimal-count"><option>4 décimales</option><option>2 décimales</option></select></div>
+                                <div class="field"><label for="theme">Thème</label><select id="theme"><option>Système</option><option>Clair</option><option>Sombre</option></select></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel" id="panel-security">
+                        <div class="panel-heading"><div><h2>Accès et sécurité</h2><p>Gérez les autorisations et les sessions de NovaTech France.</p></div><span class="status-pill">MFA obligatoire</span></div>
+                        <div class="card">
+                            <div class="card-title"><span class="material-symbols-outlined" aria-hidden="true">manage_accounts</span><div><h3>Rôles de l'organisation</h3><p>Les accès restent strictement limités au tenant actif.</p></div></div>
+                            <div class="summary-grid">
+                                <div class="summary-item"><div><h3>Administrateur</h3><p>4 membres · Configuration complète</p></div><span class="status-pill">Complet</span></div>
+                                <div class="summary-item"><div><h3>Responsable DSI</h3><p>8 membres · Actifs et consommations</p></div><span class="status-pill">Métier</span></div>
+                                <div class="summary-item"><div><h3>Responsable RSE</h3><p>6 membres · Carbone et rapports</p></div><span class="status-pill">Métier</span></div>
+                                <div class="summary-item"><div><h3>Lecteur</h3><p>19 membres · Consultation uniquement</p></div><span class="status-pill">Lecture</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <dialog id="discard-dialog" aria-labelledby="discard-title">
+        <div class="dialog-body">
+            <h2 id="discard-title">Ignorer les modifications ?</h2>
+            <p>Les changements apportés au calcul carbone ne seront pas enregistrés.</p>
+            <div class="dialog-actions"><button class="button secondary" id="continue-editing" type="button">Continuer la modification</button><button class="button primary" id="confirm-discard" type="button">Ignorer</button></div>
+        </div>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"><span class="material-symbols-outlined" aria-hidden="true">check_circle</span><span>Les paramètres de calcul carbone ont été mis à jour.</span></div>
+
+    <script>
+        const form = document.getElementById('carbon-form');
+        const factorInput = document.getElementById('emission-factor');
+        const sourceInput = document.getElementById('factor-source');
+        const dateInput = document.getElementById('effective-date');
+        const previewFactor = document.getElementById('preview-factor');
+        const previewResult = document.getElementById('preview-result');
+        const saveButton = document.getElementById('save-button');
+        const resetButton = document.getElementById('reset-button');
+        const changeStatus = document.getElementById('change-status');
+        const actionMessage = document.getElementById('action-message');
+        const dialog = document.getElementById('discard-dialog');
+        const toast = document.getElementById('toast');
+        const initialValues = Object.fromEntries(new FormData(form));
+        let dirty = false;
+        let pendingPanel = null;
+
+        function normalizeFactor(value) {
+            return Number(value.replace(',', '.'));
+        }
+
+        function validateForm() {
+            const factorValue = factorInput.value.trim();
+            const parsedFactor = normalizeFactor(factorValue);
+            const validDecimal = /^\d+(?:[,.]\d{1,4})?$/.test(factorValue);
+            const validations = [
+                [factorInput, 'factor-error', Number.isFinite(parsedFactor) && parsedFactor >= 0 && validDecimal, validDecimal ? 'Le facteur d’émission doit être positif ou égal à zéro.' : 'Saisissez au maximum quatre décimales.'],
+                [sourceInput, 'source-error', sourceInput.value.trim().length > 0, 'La source du facteur d’émission est obligatoire.'],
+                [dateInput, 'date-error', dateInput.value.length > 0, 'La date de prise d’effet est obligatoire.']
+            ];
+
+            validations.forEach(([input, errorId, valid, message]) => {
+                input.classList.toggle('invalid', !valid);
+                input.setAttribute('aria-invalid', String(!valid));
+                document.getElementById(errorId).textContent = valid ? '' : message;
+            });
+            return validations.every(([, , valid]) => valid);
+        }
+
+        function updatePreview() {
+            const factor = normalizeFactor(factorInput.value);
+            if (!Number.isFinite(factor) || factor < 0) return;
+            previewFactor.textContent = `${factor.toLocaleString('fr-FR', { minimumFractionDigits: 4, maximumFractionDigits: 4 })} kgCO₂e/kWh`;
+            previewResult.textContent = (125.5 * factor).toLocaleString('fr-FR', { minimumFractionDigits: 4, maximumFractionDigits: 4 });
+        }
+
+        function setDirtyState(isDirty) {
+            dirty = isDirty;
+            saveButton.disabled = !isDirty;
+            resetButton.disabled = !isDirty;
+            changeStatus.textContent = isDirty ? 'Modifications non enregistrées' : 'Configuration à jour';
+            changeStatus.classList.toggle('dirty-pill', isDirty);
+            actionMessage.textContent = isDirty ? 'Des modifications attendent votre validation.' : 'Toutes les modifications sont enregistrées.';
+        }
+
+        function hasFormChanged() {
+            const currentValues = Object.fromEntries(new FormData(form));
+            return Object.keys(initialValues).some((key) => currentValues[key] !== initialValues[key]);
+        }
+
+        function showPanel(panelName) {
+            document.querySelectorAll('.panel').forEach((panel) => panel.classList.toggle('active', panel.id === `panel-${panelName}`));
+            document.querySelectorAll('.settings-tab').forEach((tab) => {
+                const active = tab.dataset.panel === panelName;
+                tab.classList.toggle('active', active);
+                tab.toggleAttribute('aria-current', active);
+            });
+            document.getElementById('mobile-section').value = panelName;
+        }
+
+        function requestPanel(panelName) {
+            if (dirty && panelName !== 'carbon') {
+                pendingPanel = panelName;
+                dialog.showModal();
+                return;
+            }
+            showPanel(panelName);
+        }
+
+        form.addEventListener('input', () => {
+            validateForm();
+            updatePreview();
+            setDirtyState(hasFormChanged());
+        });
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (!validateForm()) return;
+            saveButton.disabled = true;
+            saveButton.innerHTML = '<span class="spinner" aria-hidden="true"></span><span>Enregistrement...</span>';
+            actionMessage.textContent = 'Enregistrement sécurisé en cours...';
+            window.setTimeout(() => {
+                Object.assign(initialValues, Object.fromEntries(new FormData(form)));
+                saveButton.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">save</span><span>Enregistrer les modifications</span>';
+                setDirtyState(false);
+                toast.classList.add('show');
+                window.setTimeout(() => toast.classList.remove('show'), 3500);
+            }, 650);
+        });
+
+        resetButton.addEventListener('click', () => {
+            Object.entries(initialValues).forEach(([name, value]) => { form.elements[name].value = value; });
+            validateForm();
+            updatePreview();
+            setDirtyState(false);
+        });
+
+        document.querySelectorAll('.settings-tab').forEach((tab) => tab.addEventListener('click', () => requestPanel(tab.dataset.panel)));
+        document.getElementById('mobile-section').addEventListener('change', (event) => requestPanel(event.target.value));
+        document.getElementById('continue-editing').addEventListener('click', () => { pendingPanel = null; dialog.close(); });
+        document.getElementById('confirm-discard').addEventListener('click', () => {
+            Object.entries(initialValues).forEach(([name, value]) => { form.elements[name].value = value; });
+            setDirtyState(false);
+            updatePreview();
+            dialog.close();
+            showPanel(pendingPanel || 'carbon');
+            pendingPanel = null;
+        });
+        window.addEventListener('beforeunload', (event) => { if (dirty) event.preventDefault(); });
+    </script>
+</body>
+</html>

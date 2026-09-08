@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary-container": "#fdfcff", "surface-container": "#e5eeff", "tertiary-fixed": "#cce5ff", "primary": "#006948", "tertiary-fixed-dim": "#93ccff", "inverse-on-surface": "#eaf1ff", "inverse-primary": "#68dba9", "surface-container-lowest": "#ffffff", "on-secondary-fixed-variant": "#3f465c", "on-surface-variant": "#3d4a42", "surface-dim": "#cbdbf5", "surface": "#f8f9ff", "surface-container-highest": "#d3e4fe", "on-surface": "#0b1c30", "on-primary-fixed-variant": "#005137", "secondary-fixed-dim": "#bec6e0", "on-background": "#0b1c30", "outline": "#6d7a72", "surface-bright": "#f8f9ff", "on-primary": "#ffffff", "secondary-fixed": "#dae2fd", "on-primary-container": "#f5fff7", "tertiary-container": "#007bb9", "surface-container-low": "#eff4ff", "outline-variant": "#bccac0", "surface-tint": "#006c4a", "secondary-container": "#dae2fd", "on-tertiary-fixed-variant": "#004b73", "on-primary-fixed": "#002114", "secondary": "#565e74", "on-secondary": "#ffffff", "error": "#ba1a1a", "primary-fixed": "#85f8c4", "on-tertiary": "#ffffff", "on-error": "#ffffff", "inverse-surface": "#213145", "surface-container-high": "#dce9ff", "on-secondary-fixed": "#131b2e", "on-error-container": "#93000a", "on-tertiary-fixed": "#001d31", "error-container": "#ffdad6", "primary-container": "#00855d", "primary-fixed-dim": "#68dba9", "tertiary": "#006194", "on-secondary-container": "#5c647a", "background": "#f8f9ff", "surface-variant": "#d3e4fe" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "sidebar-width": "16.5rem", "gutter-mobile": "1rem", "space-xl": "2rem", "sidebar-collapsed": "4.5rem", "content-max-w": "100rem", "space-2xl": "3rem", "space-md": "1rem", "space-xs": "0.5rem", "space-lg": "1.5rem", "space-sm": "0.75rem", "gutter-desktop": "1.5rem", "space-xxs": "0.25rem" }, "fontFamily": { "label-md": ["Inter"], "body-lg": ["Inter"], "display-lg": ["Inter"], "display-lg-mobile": ["Inter"], "body-sm": ["Inter"], "title-md": ["Inter"], "headline-lg": ["Inter"], "body-md": ["Inter"], "metric-val": ["Inter"], "headline-md": ["Inter"], "label-sm": ["Inter"] }, "fontSize": { "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "600" }], "display-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400" }], "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "metric-val": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-sidebar-width bg-inverse-surface z-50 flex flex-col justify-between border-r border-outline-variant/10"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm border-b border-outline-variant/10"><img alt="EcoTrack Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UGFrdZrCkj_ytSMD2ojtE3os4HPl1FXzp6283xnkx8LSHRkZrCV021iJpddmiGa3JV5aonR5E7Rc9-8iesllpWihJYdK1haFHML9b6TsV4k8dgZoU1lx71BXN0TSszDm0O_BV2LZATMh7Qpv404FZ6UKhHdqB3YXUQib61PM0O2sUBCiURDqskVNtH-2K6c3IwjvzcaO8_NkoF-z2vXIBjwCeYZf-AX5b9lqHLS6uLFG_KmnKdjWq6qtM"/><div class="flex flex-col"><span class="font-title-md text-title-md text-inverse-on-surface font-bold tracking-tight">EcoTrack</span><span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider">GreenOps &amp; ESG</span></div></div><div class="px-space-md py-space-lg"><p class="px-space-sm pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline-variant/70">Plateforme IT &amp; Carbone</p><nav class="flex flex-col gap-space-xxs" data-active-classes="bg-primary text-on-primary font-title-md shadow-sm"><a class="flex items-center px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-container-highest/10 hover:text-inverse-on-surface transition-all duration-150" data-path="tableau-de-bord" href="#">Tableau de bord</a><a class="flex items-center px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-container-highest/10 hover:text-inverse-on-surface transition-all duration-150" data-path="inventaire-et-actifs-it" href="#">Inventaire &amp; Actifs IT</a><a class="flex items-center px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-container-highest/10 hover:text-inverse-on-surface transition-all duration-150" data-path="moteur-de-calcul-et-facteurs" href="#">Moteur de Calcul &amp; Facteurs</a><a class="flex items-center px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-container-highest/10 hover:text-inverse-on-surface transition-all duration-150" data-path="recommandations-greenops" href="#">Recommandations GreenOps</a><a class="flex items-center px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-container-highest/10 hover:text-inverse-on-surface transition-all duration-150" data-path="rapports-et-exports" href="#">Rapports &amp; Exports</a><a class="flex items-center px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-container-highest/10 hover:text-inverse-on-surface transition-all duration-150" data-path="parametres" href="#">Paramètres</a></nav></div></div><div class="p-space-md border-t border-outline-variant/10"><div class="bg-surface-container-lowest/5 rounded-xl p-space-sm flex items-center justify-between"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-outline-variant">Calculateur Carbone</span><span class="font-body-sm text-body-sm text-inverse-on-surface font-semibold">Standard GHG &amp; CSRD</span></div><span class="material-symbols-outlined text-primary-fixed-dim text-lg">energy_savings_leaf</span></div></div></aside><div class="pl-sidebar-width min-h-screen flex flex-col"><header class="fixed top-0 left-sidebar-width right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-xl flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-1 max-w-xl"><div class="relative w-full flex items-center"><span class="material-symbols-outlined absolute left-space-sm text-outline pointer-events-none text-lg">search</span><input class="w-full h-10 pl-10 pr-space-md bg-surface-container-lowest border border-outline-variant/50 rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher un actif IT, data center, PUE, facture énergétique..." type="text"/></div></div><div class="flex items-center gap-space-lg"><div class="hidden md:flex items-center gap-space-xs bg-surface-container-low p-1 rounded-lg border border-outline-variant/40"><button class="px-space-sm py-1 rounded font-label-sm text-label-sm font-semibold bg-surface-container-lowest text-on-surface shadow-sm" type="button">Temps Réel (30j)</button><button class="px-space-sm py-1 rounded font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" type="button">Bilan Annuel 2024</button></div><div class="h-6 w-px bg-outline-variant/40"></div><button aria-label="Notifications" class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full ring-2 ring-surface"></span></button><div class="flex items-center gap-space-sm pl-space-xs"><img alt="Claire Moreau" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvQvV9El92a9tu2GGQElAv7CwEn1UIBJOko4_HDWxWwlIj0Z7eyasK5mT5DuhWQOiVnNPLNbj1roptfVl-c09ygZEToyMEDww5sx8qTrrWg0YSKw-9pcii36AtVbWWW57qeI9Mqgtgm1Soq-dA8IUPcM8gf_IgJzjxawSrv-uWdNos3culbg-X4IHYXcXatSNZ9X7xT8gwXBGaK-bZvT_KxJ73gR52MupGJ5R9yn7hNIgXjPjfF9_f"/><div class="hidden lg:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">Claire Moreau</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Lead ESG &amp; GreenOps</span></div></div></div></header><main class="relative pt-16 bg-surface flex-1 w-full max-w-content-max-w mx-auto px-gutter-desktop py-space-xl"><div class="flex flex-col w-full gap-space-xl">
+<!-- Page Header & Action Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xxs">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed uppercase tracking-wider font-semibold">GreenOps Live</span>
+<span class="font-label-sm text-label-sm text-outline">Mis à jour il y a 3 min</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">Inventaire &amp; Consommation des Actifs IT</h1>
+<p class="font-body-md text-body-md text-secondary">Supervision unifiée de la puissance électrique, des PUE datacenters et de l'intensité carbone Scope 2/3.</p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="inline-flex items-center gap-space-xs px-space-md py-2.5 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container-low transition-all" type="button">
+<span class="material-symbols-outlined text-base text-secondary">upload_file</span>
+<span>Importer des relevés (CSV/Logs)</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-md hover:bg-primary-container transition-all" type="button">
+<span class="material-symbols-outlined text-base">add</span>
+<span>+ Nouvel équipement</span>
+</button>
+</div>
+</div>
+<!-- 4 KPI Hero Metric Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Puissance active totale</span>
+<div class="p-2 rounded-lg bg-surface-container-low text-primary">
+<span class="material-symbols-outlined text-lg">bolt</span>
+</div>
+</div>
+<div class="my-space-sm flex items-baseline gap-space-xs">
+<span class="font-metric-val text-metric-val text-on-surface tracking-tight">142.8</span>
+<span class="font-label-md text-label-md text-secondary font-medium">kW</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed font-semibold">
+<span class="material-symbols-outlined text-xs">arrow_downward</span>3.2%
+        </span>
+<span class="font-body-sm text-body-sm text-outline">vs 7 jours précédents</span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Énergie mensuelle (30j)</span>
+<div class="p-2 rounded-lg bg-surface-container-low text-tertiary">
+<span class="material-symbols-outlined text-lg">electric_meter</span>
+</div>
+</div>
+<div class="my-space-sm flex items-baseline gap-space-xs">
+<span class="font-metric-val text-metric-val text-on-surface tracking-tight">102 816</span>
+<span class="font-label-md text-label-md text-secondary font-medium">kWh</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-secondary">Équiv. carbone :</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">5.86 tCO₂e</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">PUE moyen pondéré</span>
+<div class="p-2 rounded-lg bg-surface-container-low text-primary">
+<span class="material-symbols-outlined text-lg">eco</span>
+</div>
+</div>
+<div class="my-space-sm flex items-baseline gap-space-xs">
+<span class="font-metric-val text-metric-val text-on-surface tracking-tight">1.28</span>
+<span class="font-label-sm text-label-sm text-secondary font-normal">/ 1.00 théorique</span>
+</div>
+<div class="flex items-center justify-between w-full">
+<div class="flex items-center gap-space-xs">
+<span class="h-2 w-2 rounded-full bg-primary"></span>
+<span class="font-body-sm text-body-sm text-secondary">Cible GreenOps : 1.20</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold">+0.08 écart</span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Actifs sous surveillance</span>
+<div class="p-2 rounded-lg bg-surface-container-low text-error">
+<span class="material-symbols-outlined text-lg">dns</span>
+</div>
+</div>
+<div class="my-space-sm flex items-baseline gap-space-xs">
+<span class="font-metric-val text-metric-val text-on-surface tracking-tight">348</span>
+<span class="font-label-md text-label-md text-secondary">nœuds IT</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-error-container text-on-error-container font-semibold">
+          14 serveurs zombies / idle
+        </span>
+<span class="font-body-sm text-body-sm text-secondary">~3.8 kW gaspillés</span>
+</div>
+</div>
+</div>
+<!-- Search & Multi-criteria Filter Bar -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Search Field -->
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-space-sm top-2.5 text-outline text-lg pointer-events-none">search</span>
+<input class="w-full h-10 pl-10 pr-space-md bg-surface-container-low text-on-surface rounded-lg font-body-sm text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest transition-all" id="searchInput" placeholder="Rechercher par hostname, IP, tag d'application (ex: srv-prod, 10.240...)" type="text"/>
+</div>
+<!-- Selectors & Quick Filters -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<!-- Datacenter Filter -->
+<div class="relative">
+<select class="appearance-none h-10 pl-space-md pr-8 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-lg focus:outline-none cursor-pointer">
+<option value="all">Tous les sites &amp; Clouds</option>
+<option value="dc1">Paris DC1 (Equinix PA4)</option>
+<option value="aws">AWS eu-central-1 (Frankfurt)</option>
+<option value="azure">Azure North Europe (Dublin)</option>
+<option value="gcp">GCP europe-west9 (Paris)</option>
+<option value="edge">Edge Micro-DC Lyon</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2.5 text-secondary text-sm pointer-events-none">expand_more</span>
+</div>
+<!-- Equipment Type Filter -->
+<div class="relative">
+<select class="appearance-none h-10 pl-space-md pr-8 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-lg focus:outline-none cursor-pointer">
+<option value="all">Tous les types d'équipements</option>
+<option value="compute">Serveurs Bare-Metal</option>
+<option value="k8s">Clusters Kubernetes</option>
+<option value="storage">Baies NVMe / SAN</option>
+<option value="network">Switches &amp; Routeurs</option>
+<option value="cloud-vm">Instances Cloud Virtuelles</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2.5 text-secondary text-sm pointer-events-none">expand_more</span>
+</div>
+<!-- Health/Energy State Filter -->
+<div class="relative">
+<select class="appearance-none h-10 pl-space-md pr-8 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-lg focus:outline-none cursor-pointer">
+<option value="all">Tous les états GreenOps</option>
+<option value="opt">Optimisé (&gt;60% charge)</option>
+<option value="sub">Sous-exploité (&lt;25% charge)</option>
+<option value="zombie">Zombie / Fuite thermique</option>
+<option value="eco">Mode Éco / Standby</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2.5 text-secondary text-sm pointer-events-none">expand_more</span>
+</div>
+<!-- Reset Button -->
+<button class="h-10 px-space-sm rounded-lg text-secondary hover:bg-surface-container-low hover:text-on-surface transition-colors flex items-center justify-center" title="Réinitialiser les filtres" type="button">
+<span class="material-symbols-outlined text-lg">restart_alt</span>
+</button>
+</div>
+</div>
+<!-- Active Tag pills -->
+<div class="flex flex-wrap items-center gap-space-xs pt-space-xs">
+<span class="font-label-sm text-label-sm text-secondary">Filtres rapides :</span>
+<button class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-primary text-on-primary font-medium">Tout afficher (348)</button>
+<button class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-error-container text-on-error-container font-medium hover:bg-error-container/80 transition-colors">Alertes Zombies (14)</button>
+<button class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-surface-container-low text-secondary font-medium hover:text-on-surface transition-colors">On-Premise (182)</button>
+<button class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-surface-container-low text-secondary font-medium hover:text-on-surface transition-colors">Multi-Cloud (166)</button>
+</div>
+</div>
+<!-- Main IT Assets Inventory Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="px-space-lg py-space-md flex items-center justify-between bg-surface-container-low/50">
+<div class="flex items-center gap-space-sm">
+<span class="font-title-md text-title-md text-on-surface font-semibold">Parc d'équipements inventoriés</span>
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-highest text-on-surface-variant font-medium">Affichage 6 sur 348</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-1 font-label-md text-label-md text-secondary hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+<span>Exporter (XLSX/JSON)</span>
+</button>
+<button class="p-1 rounded text-secondary hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-base">view_column</span>
+</button>
+</div>
+</div>
+<!-- Responsive Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left text-body-md font-body-md">
+<thead>
+<tr class="bg-surface-container-low/80 text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-lg" scope="col">Actif IT &amp; Architecture</th>
+<th class="py-space-sm px-space-md" scope="col">Emplacement</th>
+<th class="py-space-sm px-space-md" scope="col">Charge CPU / RAM</th>
+<th class="py-space-sm px-space-md text-right" scope="col">P. Instantanée</th>
+<th class="py-space-sm px-space-md text-center" scope="col">PUE Site</th>
+<th class="py-space-sm px-space-md text-right" scope="col">Conso 30j</th>
+<th class="py-space-sm px-space-md text-right" scope="col">Carbone (30j)</th>
+<th class="py-space-sm px-space-md text-center" scope="col">Statut</th>
+<th class="py-space-sm px-space-lg text-right" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<!-- Row 1: High utilization DB Bare-metal -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">database</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-medium leading-snug">srv-prod-db-cluster-01</span>
+<span class="font-body-sm text-body-sm text-secondary">Dell PowerEdge R750 • PostgreSQL Main</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Paris DC1</span>
+<span class="font-body-sm text-body-sm text-secondary">Rack B04 • Baie On-Prem</span>
+</div>
+</td>
+<td class="py-space-md px-space-md min-w-[140px]">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-secondary">CPU 78%</span>
+<span class="text-on-surface font-semibold">RAM 84%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 78%"></div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md font-semibold text-on-surface">485 W</span>
+<span class="block font-body-sm text-body-sm text-outline">P. Nominale 750W</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-medium">1.22</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md text-on-surface font-semibold">349.2 kWh</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md text-on-surface font-bold">19.9 kg</span>
+<span class="block font-body-sm text-body-sm text-secondary">CO₂e (Scope 2)</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed font-semibold">
+                Actif Optimisé
+              </span>
+</td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<button class="p-1 rounded text-secondary hover:text-primary hover:bg-surface-container transition-colors" title="Inspecter les métriques" type="button">
+<span class="material-symbols-outlined text-lg">tune</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Zombie Server Alert -->
+<tr class="bg-error-container/10 hover:bg-error-container/20 transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-xl">warning</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-medium leading-snug">srv-dev-staging-legacy-03</span>
+<span class="font-body-sm text-body-sm text-secondary">HP ProLiant DL380 • Ancien staging QA</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Paris DC1</span>
+<span class="font-body-sm text-body-sm text-secondary">Rack C12 • Baie On-Prem</span>
+</div>
+</td>
+<td class="py-space-md px-space-md min-w-[140px]">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-error font-medium">CPU 2%</span>
+<span class="text-secondary">RAM 11%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 2%"></div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md font-semibold text-error">320 W</span>
+<span class="block font-body-sm text-body-sm text-error/80">Consommation Idle</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-medium">1.22</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md text-on-surface font-semibold">230.4 kWh</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md text-error font-bold">13.1 kg</span>
+<span class="block font-body-sm text-body-sm text-error/80">Gaspillage pur</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-error-container text-on-error-container font-semibold animate-pulse">
+                Idle / Zombie
+              </span>
+</td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<button class="px-2 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary-container transition-colors" type="button">
+                Éteindre / Archiver
+              </button>
+</td>
+</tr>
+<!-- Row 3: Kubernetes Worker GPU Node -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">memory</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-medium leading-snug">k8s-worker-gpu-node-04</span>
+<span class="font-body-sm text-body-sm text-secondary">NVIDIA A100x4 • Inférence LLM</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">AWS eu-central-1</span>
+<span class="font-body-sm text-body-sm text-secondary">g5.12xlarge • VPC ML-Prod</span>
+</div>
+</td>
+<td class="py-space-md px-space-md min-w-[140px]">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-secondary">GPU 91%</span>
+<span class="text-on-surface font-semibold">VRAM 95%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 91%"></div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md font-semibold text-on-surface">1 150 W</span>
+<span class="block font-body-sm text-body-sm text-outline">Pic 1 320W</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-medium">1.15</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md text-on-surface font-semibold">828.0 kWh</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md text-on-surface font-bold">298.1 kg</span>
+<span class="block font-body-sm text-body-sm text-secondary">Mix fossile DE (0.36)</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-container text-on-surface font-semibold">
+                Haute Charge (Peak)
+              </span>
+</td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<button class="p-1 rounded text-secondary hover:text-primary hover:bg-surface-container transition-colors" title="Inspecter les métriques" type="button">
+<span class="material-symbols-outlined text-lg">tune</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: SAN Storage Array -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">storage</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-medium leading-snug">storage-san-tier1-nvme</span>
+<span class="font-body-sm text-body-sm text-secondary">PureStorage FlashArray//X • 180 TB</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Paris DC1</span>
+<span class="font-body-sm text-body-sm text-secondary">Rack D01 • Storage Pool A</span>
+</div>
+</td>
+<td class="py-space-md px-space-md min-w-[140px]">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-secondary">I/O 45%</span>
+<span class="text-on-surface font-semibold">Cap. 64%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md font-semibold text-on-surface">620 W</span>
+<span class="block font-body-sm text-body-sm text-outline">Continu constant</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-medium">1.22</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md text-on-surface font-semibold">446.4 kWh</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md text-on-surface font-bold">25.4 kg</span>
+<span class="block font-body-sm text-body-sm text-secondary">CO₂e (Scope 2)</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed font-semibold">
+                Actif Continu
+              </span>
+</td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<button class="p-1 rounded text-secondary hover:text-primary hover:bg-surface-container transition-colors" title="Inspecter les métriques" type="button">
+<span class="material-symbols-outlined text-lg">tune</span>
+</button>
+</td>
+</tr>
+<!-- Row 5: Cloud VM App Engine -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">cloud_sync</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-medium leading-snug">azure-app-service-frontend</span>
+<span class="font-body-sm text-body-sm text-secondary">Standard_D8s_v5 • Web API B2B</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Azure Dublin</span>
+<span class="font-body-sm text-body-sm text-secondary">North Europe Zone 2</span>
+</div>
+</td>
+<td class="py-space-md px-space-md min-w-[140px]">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-secondary">CPU 28%</span>
+<span class="text-on-surface font-semibold">RAM 52%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 28%"></div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md font-semibold text-on-surface">190 W</span>
+<span class="block font-body-sm text-body-sm text-outline">Estimé API Télemétrie</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-medium">1.18</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md text-on-surface font-semibold">136.8 kWh</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md text-on-surface font-bold">47.9 kg</span>
+<span class="block font-body-sm text-body-sm text-secondary">Mix IE (0.35 kg/kWh)</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed font-semibold">
+                Sous-alloué
+              </span>
+</td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<button class="p-1 rounded text-secondary hover:text-primary hover:bg-surface-container transition-colors" title="Inspecter les métriques" type="button">
+<span class="material-symbols-outlined text-lg">tune</span>
+</button>
+</td>
+</tr>
+<!-- Row 6: Network Spine Switch -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">hub</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-medium leading-snug">sw-core-spine-01</span>
+<span class="font-body-sm text-body-sm text-secondary">Cisco Nexus 9300 • 100GbE Backbone</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Paris DC1</span>
+<span class="font-body-sm text-body-sm text-secondary">Rack A01 • Core Network</span>
+</div>
+</td>
+<td class="py-space-md px-space-md min-w-[140px]">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-secondary">Trafic 62%</span>
+<span class="text-on-surface font-semibold">Ports 48/64</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 62%"></div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md font-semibold text-on-surface">380 W</span>
+<span class="block font-body-sm text-body-sm text-outline">Capteurs PDU rack</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-medium">1.22</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md text-on-surface font-semibold">273.6 kWh</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-md text-label-md text-on-surface font-bold">15.6 kg</span>
+<span class="block font-body-sm text-body-sm text-secondary">CO₂e (Scope 2)</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed font-semibold">
+                Nominal
+              </span>
+</td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<button class="p-1 rounded text-secondary hover:text-primary hover:bg-surface-container transition-colors" title="Inspecter les métriques" type="button">
+<span class="material-symbols-outlined text-lg">tune</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination & Statistics Footer -->
+<div class="px-space-lg py-space-sm bg-surface-container-low/40 flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<span class="font-body-sm text-body-sm text-secondary">
+        Affichage de 1 à 6 sur 348 équipements physiques et virtuels
+      </span>
+<div class="flex items-center gap-space-xs">
+<button class="px-3 py-1 rounded bg-surface-container-lowest text-secondary font-label-sm text-label-sm shadow-sm hover:text-on-surface transition-colors" disabled="">Précédent</button>
+<button class="px-3 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold shadow-sm">1</button>
+<button class="px-3 py-1 rounded bg-surface-container-lowest text-secondary font-label-sm text-label-sm shadow-sm hover:text-on-surface transition-colors">2</button>
+<button class="px-3 py-1 rounded bg-surface-container-lowest text-secondary font-label-sm text-label-sm shadow-sm hover:text-on-surface transition-colors">3</button>
+<span class="px-1 text-secondary">...</span>
+<button class="px-3 py-1 rounded bg-surface-container-lowest text-secondary font-label-sm text-label-sm shadow-sm hover:text-on-surface transition-colors">58</button>
+<button class="px-3 py-1 rounded bg-surface-container-lowest text-secondary font-label-sm text-label-sm shadow-sm hover:text-on-surface transition-colors">Suivant</button>
+</div>
+</div>
+</div>
+<!-- Lower Section: Architecture Breakdown & Real-Time Carbon Intensity -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-md">
+<!-- Breakdown by Architecture (2 cols on large) -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-semibold">Répartition Énergétique par Typologie d'Infrastructure</span>
+<span class="font-body-sm text-body-sm text-secondary">Consommation cumulée et déperditions de refroidissement (overhead PUE)</span>
+</div>
+<span class="material-symbols-outlined text-secondary">pie_chart</span>
+</div>
+<!-- Segment Bars Visualization -->
+<div class="flex flex-col gap-space-sm">
+<div class="w-full h-4 rounded-full overflow-hidden flex bg-surface-container">
+<div class="h-full bg-primary" style="width: 52%" title="On-Premises Bare-Metal (52%)"></div>
+<div class="h-full bg-primary-container" style="width: 31%" title="Cloud Public Hyperscalers (31%)"></div>
+<div class="h-full bg-tertiary" style="width: 12%" title="Stockage SAN / NAS Dédié (12%)"></div>
+<div class="h-full bg-secondary" style="width: 5%" title="Réseau &amp; Edge (5%)"></div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-xs">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">On-Premises</span>
+</div>
+<span class="font-title-md text-title-md font-bold text-on-surface">53 464 kWh</span>
+<span class="font-body-sm text-body-sm text-outline">52.0% • 182 serveurs</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Cloud Hyperscalers</span>
+</div>
+<span class="font-title-md text-title-md font-bold text-on-surface">31 873 kWh</span>
+<span class="font-body-sm text-body-sm text-outline">31.0% • 124 instances</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Stockage SAN/NVMe</span>
+</div>
+<span class="font-title-md text-title-md font-bold text-on-surface">12 338 kWh</span>
+<span class="font-body-sm text-body-sm text-outline">12.0% • 22 baies</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Réseau &amp; Edge</span>
+</div>
+<span class="font-title-md text-title-md font-bold text-on-surface">5 141 kWh</span>
+<span class="font-body-sm text-body-sm text-outline">5.0% • 20 switchs</span>
+</div>
+</div>
+</div>
+<!-- Energy Loss Indicator Panel -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-2xl">thermostat_auto</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Déperdition thermique et climatisation (PUE overhead)</span>
+<span class="font-body-sm text-body-sm text-secondary">Surconsommation liée à l'infrastructure datacenter : 22 620 kWh (28% au-dessus de l'IT net)</span>
+</div>
+</div>
+<button class="px-space-md py-1.5 rounded-lg bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-semibold shadow-sm hover:bg-surface-container transition-colors whitespace-nowrap" type="button">
+          Audit Thermique DC
+        </button>
+</div>
+</div>
+<!-- Right Side Widget: Quick Actions & Carbon Insights -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-on-surface font-semibold">Gains GreenOps Immédiats</span>
+<span class="material-symbols-outlined text-primary">tips_and_updates</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Action Item 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-error text-xl mt-0.5">power_off</span>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold">14 Serveurs Zombies identifiés</span>
+<span class="font-body-sm text-body-sm text-secondary">CPU &lt; 5% depuis 30 jours continus. Éteindre ces nœuds permet d'économiser :</span>
+<span class="font-label-sm text-label-sm text-primary font-bold mt-1">2 736 kWh / mois (~156 € &amp; 156 kgCO₂e)</span>
+</div>
+</div>
+<!-- Action Item 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-tertiary text-xl mt-0.5">swap_driving_apps</span>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Rightsizing Instances Cloud</span>
+<span class="font-body-sm text-body-sm text-secondary">8 instances VM sur-allouées (RAM &lt; 20%). Passage en taille inférieure recommandé.</span>
+</div>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-semibold hover:bg-primary-container transition-colors flex items-center justify-center gap-space-xs shadow-sm" type="button">
+<span>Appliquer les règles d'extinction automatique</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  // Filter interactive simulation
+  document.getElementById('searchInput')?.addEventListener('input', function(e) {
+    const val = e.target.value.toLowerCase();
+    const rows = document.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      row.style.display = text.includes(val) ? '' : 'none';
+    });
+  });
+</script></main></div></body></html>

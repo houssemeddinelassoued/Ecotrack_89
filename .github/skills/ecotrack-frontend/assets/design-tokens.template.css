@@ -1,0 +1,68 @@
+:root {
+    color-scheme: light;
+    --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+    --font-display: "IBM Plex Serif", Georgia, serif;
+
+    --color-canvas: #f4f7f5;
+    --color-surface: #ffffff;
+    --color-surface-muted: #e9efec;
+    --color-ink: #17211d;
+    --color-ink-muted: #52615a;
+    --color-border: #c8d2cd;
+    --color-primary: #176b52;
+    --color-primary-strong: #0d4d3a;
+    --color-accent: #16697a;
+    --color-warning: #9a5b13;
+    --color-danger: #a33a32;
+    --color-focus: #0b6fc2;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+
+    --radius-control: 0.25rem;
+    --radius-panel: 0.5rem;
+    --shadow-overlay: 0 1rem 2.5rem rgb(23 33 29 / 18%);
+    --content-max: 90rem;
+    --control-height: 2.5rem;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    line-height: 1.5;
+}
+
+:focus-visible {
+    outline: 0.1875rem solid var(--color-focus);
+    outline-offset: 0.125rem;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
